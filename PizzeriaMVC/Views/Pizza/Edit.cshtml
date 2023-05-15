@@ -1,0 +1,19 @@
+﻿@model PizzaCategoryIngredients
+@{
+    FormModel newForm = new()
+            {
+                Title = $"edit pizza #{@Model.Pizza.Id}",
+                Action = "Edit",
+            };
+}
+
+<h1 class="text-center">Form di @newForm.Title</h1>
+<div class="row">
+    <div class="col-md-6 m-auto">
+        <form asp-controller="Pizza" asp-action="@newForm.Action" asp-route-id="@Model.Pizza.Id" method="post" enctype="multipart/form-data" >
+            @Html.AntiForgeryToken()
+            @Html.Partial("_Form")
+            <input type="hidden" asp-for="@Model.Pizza.Id" />
+        </form>
+    </div>
+</div>

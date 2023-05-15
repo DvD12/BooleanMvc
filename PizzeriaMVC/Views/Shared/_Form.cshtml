@@ -1,0 +1,62 @@
+﻿@inject PizzaContext _pizzaContext;
+
+@model PizzaCategoryIngredients;
+
+
+<div class="mb-3">
+    <strong>Nome pizza:</strong>
+    <input asp-for="Pizza.Nome" class="d-block w-100" />
+    <span asp-validation-for="Pizza.Nome"></span>
+</div>
+<div class="mb-3">
+    <strong>Descrizione pizza:</strong>
+    <input asp-for="Pizza.Descrizione" class="d-block w-100" />
+    <span asp-validation-for="Pizza.Descrizione"></span>
+</div>
+<div class="mb-3">
+    <strong>Prezzo:</strong>
+    <input asp-for="Pizza.Prezzo" class="d-block w-100" type="number" step="0.01" />
+    <span asp-validation-for="Pizza.Prezzo"></span>
+</div>
+<div class="mb-3">
+    <strong>Immagine (old):</strong>
+    <input asp-for="Pizza.Immagine" class="d-block w-100" type="text" />
+    <span asp-validation-for="Pizza.Immagine"></span>
+</div>
+<div class="mb-3">
+    <img src="Pizza.Image" />
+    <strong>Immagine</strong>
+    <input type="file" asp-for="Pizza.Image" class="d-block w-100" accept="image/*" />
+</div>
+<div class="mb-3">
+    <strong>Categoria:</strong>
+    <select asp-for="Pizza.CategoriaId">
+        @foreach(CategoryModel cat in Model.Categories)
+        {
+            @if(Model.Pizza.CategoriaId == cat.Id)
+            {
+                <option value="@cat.Id" selected>@cat.Nome</option>
+            }
+            else
+            {
+                <option value="@cat.Id">@cat.Nome</option>
+            }
+        }
+    </select>
+    <span asp-validation-for="Pizza.CategoriaId"></span>
+</div>
+<div class="mb-3">
+    <strong>Ingredienti:</strong>
+    @foreach(var check in Model.Ingredients)
+    {
+        <input type="checkbox"
+               class="form-check-input"
+               name="selectedIngredients"
+               value="@check.Ingredient.Id"
+               @(Html.Raw(check.IsChecked ? "checked = \"checked\"" : ""))
+               />
+        <label class="form-check-label">@check.Ingredient.Nome</label>
+    }
+</div>
+
+<input type="submit" class="btn btn-small btn-info">
