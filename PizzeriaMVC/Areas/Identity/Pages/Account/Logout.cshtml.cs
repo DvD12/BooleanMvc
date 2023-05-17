@@ -16,7 +16,7 @@ namespace PizzeriaMVC.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
-        public string ReturnUrl { get; set; } = "/Privacy";
+        public string returnUrl { get; set; } = "/Privacy";
 
         public LogoutModel(SignInManager<IdentityUser> signInManager, ILogger<LogoutModel> logger)
         {
