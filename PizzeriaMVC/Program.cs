@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using Microsoft.AspNetCore.Identity;
 using PizzeriaMVC;
+using PizzeriaMVC.Code;
 
 namespace PizzeriaMVC
 {
@@ -27,6 +28,8 @@ namespace PizzeriaMVC
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<PizzaContext>();
+
+            builder.Services.AddSignalR();
 
             var app = builder.Build();
 
@@ -71,6 +74,7 @@ namespace PizzeriaMVC
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.MapRazorPages();
+            app.MapHub<ChatHub>("/ChatHub");
 
             app.Run();
         }
