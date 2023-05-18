@@ -4,6 +4,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Identity;
 using PizzeriaMVC;
 using PizzeriaMVC.Code;
+using PizzeriaMVC.Models;
 
 namespace PizzeriaMVC
 {
@@ -19,7 +20,7 @@ namespace PizzeriaMVC
             // Add db context
             builder.Services.AddDbContext<PizzaContext>();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+            builder.Services.AddDefaultIdentity<PizzaUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.Password.RequireNonAlphanumeric = false;

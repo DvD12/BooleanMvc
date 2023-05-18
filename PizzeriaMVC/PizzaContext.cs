@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace PizzeriaMVC
 {
-    public class PizzaContext : IdentityDbContext<IdentityUser>
+    public class PizzaContext : IdentityDbContext<PizzaUser, IdentityRole, string>
     {
         public DbSet<ImageEntry> ImageEntries { get; set; }
         public DbSet<PizzaModel> Pizzas { get; set; }
